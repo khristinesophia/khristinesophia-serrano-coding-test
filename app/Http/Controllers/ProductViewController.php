@@ -55,4 +55,12 @@ class ProductViewController extends Controller
 
         return redirect()->route('products.index');
     }
+
+    public function destroy($id)
+    {
+        $product = Product::findOrFail($id);
+        $product->delete();
+
+        return redirect()->route('products.index');
+    }
 }
