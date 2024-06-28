@@ -29,4 +29,10 @@ class ProductViewController extends Controller
         Product::create($request->all());
         return redirect()->route('products.index');
     }
+
+    public function show($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('products.show', compact('product'));
+    }
 }
