@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductViewController;
 
-// Product routes
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{id}', [ProductController::class, 'show']);
-Route::post('/products', [ProductController::class, 'store']);
-Route::put('/products/{id}', [ProductController::class, 'update']);
-Route::delete('/products/{id}', [ProductController::class, 'destroy']);
+// View routes
+Route::prefix('products')->group(function () {
+    Route::get('/', [ProductViewController::class, 'index'])->name('products.index');
+    Route::get('/create', [ProductViewController::class, 'create'])->name('products.create');
+    Route::post('/', [ProductViewController::class, 'store'])->name('products.store');
+});
