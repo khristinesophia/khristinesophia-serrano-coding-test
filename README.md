@@ -42,8 +42,8 @@ DB_PASSWORD=password
 ## Step 4: Create a New MySQL Database
 
 - Log into MySQL:
-``
-`mysql -u root -p
+```
+mysql -u root -p
 ```
 
 - Create the Database:
