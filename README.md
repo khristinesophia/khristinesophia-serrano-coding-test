@@ -10,29 +10,48 @@ Make sure you have the following installed:
 - MySQL
 
 ## Step 1: Clone the repository
-```
-git clone https://github.com/khristinesophia/khristinesophia-serrano-coding-test
-cd khristinesophia-serrano-coding-test
-```
+```git clone https://github.com/khristinesophia/khristinesophia-serrano-coding-test``` <br>
+```cd khristinesophia-serrano-coding-test```
 
 ## Step 2: Install Dependencies
-```
-composer install
-npm install && npm run dev
-```
+```composer install```
 
 ## Step 3: Set Environment Variables
-- Copy the .env.example file to .env:
-`cp .env.example .env`
 
-## Step 4: Generate Application Key
-`php artisan key:generate`
+- Copy the .env.example file to .env: <br>
+```cp .env.example .env```
 
-## Step 5: Migrate the Database
-`php artisan migrate`
+- Update the .env file with your MySQL database credentials:
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=e_commerce_db
+DB_USERNAME=e_commerce_user
+DB_PASSWORD=password
+```
 
-## Step 6: Seed the Database
-`php artisan db:seed`
+## Step 4: Create a New MySQL Database
 
-## Step 7: Serve the Application
-`php artisan serve`
+- Log into MySQL: <br>
+```mysql -u root -p```
+
+- Create the Database: <br>
+```CREATE DATABASE e_commerce_db;```
+
+- Create a User and Grant Privileges: <br>
+```CREATE USER 'e_commerce_user'@'localhost' IDENTIFIED BY 'password';``` <br>
+```GRANT ALL PRIVILEGES ON e_commerce_db.* TO 'e_commerce_user'@'localhost';``` <br>
+```FLUSH PRIVILEGES;```
+
+## Step 5: Generate Application Key
+```php artisan key:generate```
+
+## Step 6: Migrate the Database
+```php artisan migrate```
+
+## Step 7: Seed the Database
+```php artisan db:seed```
+
+## Step 8: Serve the Application
+```php artisan serve```
