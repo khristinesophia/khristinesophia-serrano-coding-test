@@ -15,7 +15,7 @@
             @foreach ($products as $product)
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                        <strong>{{ $product->name }}</strong> - ${{ $product->price }}
+                        <strong>{{ $product->name }}</strong> - {{ $product->price }}
                     </div>
                     <div>
                         <a href="{{ route('products.show', $product->id) }}" class="btn btn-info btn-sm me-2">View</a>
@@ -30,8 +30,8 @@
             @endforeach
         </ul>
 
-        <div class="mt-3">
-            {{ $products->links() }} <!-- Pagination links -->
+        <div class="mt-3 d-flex justify-content-center">
+            {{ $products->links('pagination::bootstrap-5') }} <!-- Pagination links with Bootstrap 4 styling -->
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
