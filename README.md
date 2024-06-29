@@ -10,24 +10,16 @@ Make sure you have the following installed:
 - MySQL
 
 ## Step 1: Clone the repository
-```
-git clone https://github.com/khristinesophia/khristinesophia-serrano-coding-test
-```
-```
-cd khristinesophia-serrano-coding-test
-```
+```git clone https://github.com/khristinesophia/khristinesophia-serrano-coding-test``` <br>
+```cd khristinesophia-serrano-coding-test```
 
 ## Step 2: Install Dependencies
-```
-composer install
-```
+```composer install```
 
 ## Step 3: Set Environment Variables
 
-- Copy the .env.example file to .env:
-```
-cp .env.example .env
-```
+- Copy the .env.example file to .env: <br>
+```cp .env.example .env```
 
 - Update the .env file with your MySQL database credentials:
 ```
@@ -41,26 +33,16 @@ DB_PASSWORD=password
 
 ## Step 4: Create a New MySQL Database
 
-- Log into MySQL:
-```
-mysql -u root -p
-```
+- Log into MySQL: <br>
+```mysql -u root -p```
 
-- Create the Database:
-```
-CREATE DATABASE e_commerce_db;
-```
+- Create the Database: <br>
+```CREATE DATABASE e_commerce_db;```
 
-- Create a User and Grant Privileges:
-```
-CREATE USER 'e_commerce_user'@'localhost' IDENTIFIED BY 'password';
-```
-```
-GRANT ALL PRIVILEGES ON e_commerce_db.* TO 'e_commerce_user'@'localhost';
-```
-```
-FLUSH PRIVILEGES;
-```
+- Create a User and Grant Privileges: <br>
+```CREATE USER 'e_commerce_user'@'localhost' IDENTIFIED BY 'password';``` <br>
+```GRANT ALL PRIVILEGES ON e_commerce_db.* TO 'e_commerce_user'@'localhost';``` <br>
+```FLUSH PRIVILEGES;```
 
 ## Step 5: Generate Application Key
 ```php artisan key:generate```
