@@ -2,6 +2,10 @@
 
 use App\Http\Controllers\ProductViewController;
 
+Route::get('/', function () {
+    return 'Welcome to the E-commerce Application!';
+});
+
 // View routes
 Route::prefix('products')->group(function () {
     Route::get('/', [ProductViewController::class, 'index'])->name('products.index');
