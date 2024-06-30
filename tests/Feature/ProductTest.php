@@ -9,10 +9,9 @@ use App\Models\Product;
 
 class ProductTest extends TestCase
 {
-    use RefreshDatabase; // Refreshes database after each test
+    use RefreshDatabase;
 
-    /** @test */
-    public function can_create_product()
+    public function test_can_create_product() : void
     {
         $response = $this->post('/products', [
             'name' => 'Sample Product',
@@ -20,12 +19,11 @@ class ProductTest extends TestCase
             'price' => 10.99,
         ]);
 
-        $response->assertStatus(302); // Assert redirect after successful creation
+        $response->assertStatus(302);
         $this->assertDatabaseHas('products', ['name' => 'Sample Product']);
     }
 
-    /** @test */
-    public function can_update_product()
+    public function test_can_update_product() : void
     {
         $product = Product::factory()->create();
 
@@ -35,19 +33,17 @@ class ProductTest extends TestCase
             'price' => 19.99,
         ]);
 
-        $response->assertStatus(302); // Assert redirect after successful update
+        $response->assertStatus(302);
         $this->assertDatabaseHas('products', ['name' => 'Updated Product Name']);
     }
 
-    /** @test */
-    /** @test */
-    public function can_delete_product()
+    public function test_can_delete_product() : void
     {
         $product = Product::factory()->create();
 
         $response = $this->delete("/products/{$product->id}");
 
-        $response->assertStatus(302); // Assert redirect after successful delete
+        $response->assertStatus(302);
         $this->assertDatabaseMissing('products', ['id' => $product->id]);
     }
 }
