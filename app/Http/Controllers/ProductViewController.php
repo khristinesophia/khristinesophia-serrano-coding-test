@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 
 class ProductViewController extends Controller
@@ -32,9 +33,13 @@ class ProductViewController extends Controller
 
     public function show($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Cache::remember('product_' . $id, 3600, function () use ($id) {
+            return Product::findOrFail($id);
+        });
+
         return view('products.show', compact('product'));
     }
+
 
     public function edit($id)
     {
