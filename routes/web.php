@@ -1,9 +1,10 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductViewController;
 
 Route::get('/', function () {
-    return 'Welcome to the E-commerce Application!';
+    return view('welcome');
 });
 
 // View routes

@@ -56,6 +56,8 @@ DB_PASSWORD=password
 ## Step 8: Serve the Application
 ```php artisan serve```
 
+## Bonus Point
+
 #### Answer the question below by updating this file.
 
 Q: The management requested a new feature where in the fictional e-commerce app must have a "featured products" section.
