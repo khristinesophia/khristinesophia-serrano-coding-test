@@ -55,3 +55,10 @@ DB_PASSWORD=password
 
 ## Step 8: Serve the Application
 ```php artisan serve```
+
+#### Answer the question below by updating this file.
+
+Q: The management requested a new feature where in the fictional e-commerce app must have a "featured products" section.
+How would you go about implementing this feature in the backend?
+
+A: To implement the "featured products" section in the backend of the e-commerce application, I would first modify the database schema by adding a boolean featured column to the products table. This column will allow products to be flagged as featured. Next, I would create a new API endpoint /api/products/featured to fetch products where featured is true. Administrators would access a dedicated section in the admin panel to mark products as featured. On the frontend, I'd update the application to display featured products prominently, enhancing visibility and potentially boosting sales.

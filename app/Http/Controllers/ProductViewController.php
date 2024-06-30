@@ -1,15 +1,25 @@
 <?php
 
+// app/Http/Controllers/ProductViewController.php
+
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Services\ProductService;
 use Illuminate\Http\Request;
 
 class ProductViewController extends Controller
 {
+    protected $productService;
+
+    public function __construct(ProductService $productService)
+    {
+        $this->productService = $productService;
+    }
+
     public function index()
     {
-        $products = Product::paginate(10);
+        $products = $this->productService->getAllProductsPaginated(10);
         return view('products.index', compact('products'));
     }
 
@@ -26,20 +36,20 @@ class ProductViewController extends Controller
             'price' => 'required|numeric|between:0,999999.99',
         ]);
 
-        Product::create($request->all());
+        $this->productService->createProduct($request->all());
         return redirect()->route('products.index');
     }
 
     public function show($id)
     {
-        $product = Product::findOrFail($id);
+        $product = $this->productService->getProductById($id);
         return view('products.show', compact('product'));
     }
 
     public function edit($id)
     {
-        $product = Product::findOrFail($id);
-        return view('products.edit', compact('product')); // corrected view name
+        $product = $this->productService->getProductById($id);
+        return view('products.edit', compact('product'));
     }
 
     public function update(Request $request, $id)
@@ -50,16 +60,16 @@ class ProductViewController extends Controller
             'price' => 'required|numeric|between:0,999999.99',
         ]);
 
-        $product = Product::findOrFail($id);
-        $product->update($request->all());
+        $product = $this->productService->getProductById($id);
+        $this->productService->updateProduct($product, $request->all());
 
         return redirect()->route('products.index');
     }
 
     public function destroy($id)
     {
-        $product = Product::findOrFail($id);
-        $product->delete();
+        $product = $this->productService->getProductById($id);
+        $this->productService->deleteProduct($product);
 
         return redirect()->route('products.index');
     }
